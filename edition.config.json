@@ -1,0 +1,27 @@
+{
+  "name": "Zeenath Shameena",
+  "appName": "Zeenath Quran",
+  "tagline": "Special Edition",
+  "dedication": "",
+  "greeting": "Assalamu Alaikum",
+
+  "location": "Kesavaneri, Kalakkad, Tirunelveli, Tamil Nadu",
+  "locationLabel": "Kesavaneri Muslim Street, Kalakkad",
+  "lat": 8.543,
+  "lng": 77.568,
+  "lockCoordinates": false,
+
+  "theme": "emerald",
+  "accent": "",
+  "method": 3,
+  "school": 0,
+  "hour24": false,
+  "hideSections": [],
+
+  "iconStyle": "quran",
+  "iconArabic": null,
+  "iconBackground": "#0B2E2A",
+  "iconColor": "#D9AE4E",
+
+  "appId": ""
+}

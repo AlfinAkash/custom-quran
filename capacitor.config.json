@@ -1,0 +1,17 @@
+{
+  "appId": "com.zeenathshameena.dailyprayer",
+  "appName": "Zeenath Quran",
+  "webDir": "dist",
+  "backgroundColor": "#0B2E2A",
+  "android": {
+    "allowMixedContent": false,
+    "adjustMarginsForEdgeToEdge": "auto"
+  },
+  "plugins": {
+    "LocalNotifications": {
+      "smallIcon": "ic_stat_prayer",
+      "iconColor": "#D9AE4E",
+      "sound": "adhan.mp3"
+    }
+  }
+}
