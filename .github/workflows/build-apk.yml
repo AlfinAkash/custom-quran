@@ -1,5 +1,5 @@
 name: Build Android APK
-# Builds only on the zeenath branch. To use another branch, change the two names below (and the "if" line).
+# Builds only on the main and master branches. To use another branch, change the two names below (and the "if" line).
 on:
   workflow_dispatch:
   push:
@@ -11,7 +11,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   apk:
-    if: github.ref_name == 'zeenath' || github.ref_name == 'Zeenath'
+    if: github.ref_name == 'master' || github.ref_name == 'main'
     runs-on: ubuntu-latest
     timeout-minutes: 40
     steps:
