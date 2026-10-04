@@ -1,12 +1,12 @@
 {
-  "name": "Zeenath Shameena",
-  "appName": "Zeenath Quran",
+  "name": "AlfinAkash",
+  "appName": "AlfinAkash Quran",
   "tagline": "Special Edition",
   "dedication": "",
   "greeting": "Assalamu Alaikum",
 
-  "location": "Kesavaneri, Kalakkad, Tirunelveli, Tamil Nadu",
-  "locationLabel": "Kesavaneri Muslim Street, Kalakkad",
+  "location": "Tirunelveli, Tamil Nadu",
+  "locationLabel": "Tirunelveli, Tamil Nadu",
   "lat": 8.543,
   "lng": 77.568,
   "lockCoordinates": false,
