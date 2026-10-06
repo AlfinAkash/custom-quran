@@ -1,0 +1,2 @@
+export const Btn = ({ className = '', ...p }) => <button {...p} className={`inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-gold/40 px-4 py-2 text-sm text-gold transition hover:bg-gold hover:text-night ${className}`} />
+export const IconBtn = ({ className = '', ...p }) => <button {...p} className={`grid size-11 shrink-0 place-items-center rounded-full border border-gold/40 text-gold transition active:bg-gold active:text-night ${className}`} />

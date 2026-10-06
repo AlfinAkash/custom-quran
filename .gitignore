@@ -1,0 +1,11 @@
+node_modules
+dist
+.env
+
+android/
+Daily-Prayer.apk
+
+# Never commit signing keys
+signing/
+*.keystore
+*.jks

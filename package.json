@@ -1,0 +1,39 @@
+{
+  "name": "daily-prayer",
+  "private": true,
+  "version": "2.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "apk:add": "cap add android",
+    "apk:sync": "vite build && cap sync android",
+    "apk:debug": "cd android && gradlew assembleDebug",
+    "apk:debug:mac": "cd android && ./gradlew assembleDebug",
+    "apk:setup": "node scripts/android-setup.cjs",
+    "customize": "node scripts/customize.cjs"
+  },
+  "dependencies": {
+    "@radix-ui/react-dialog": "^1.1.23",
+    "@tanstack/react-query": "^5.104.0",
+    "lucide-react": "^1.49.0",
+    "motion": "^13.4.6",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "sonner": "^2.0.8",
+    "@capacitor/core": "^7.0.0",
+    "@capacitor/android": "^7.0.0",
+    "@capacitor/local-notifications": "^7.0.0",
+    "@capacitor/geolocation": "^7.0.0",
+    "@capacitor/app": "^7.0.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "@vitejs/plugin-react": "^6.1.1",
+    "tailwindcss": "^4.3.3",
+    "vite": "^8.3.1",
+    "@capacitor/cli": "^7.0.0",
+    "sharp": "^0.33.5"
+  }
+}

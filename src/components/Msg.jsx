@@ -1,0 +1,1 @@
+export const Msg = ({ s }) => s.error ? <p className="text-mist">Could not load. Check your connection.</p> : <div className="space-y-3" role="status" aria-label="Loading"><div className="skeleton h-6 w-2/3" /><div className="skeleton h-28 w-full" /><div className="skeleton h-6 w-1/2" /></div>

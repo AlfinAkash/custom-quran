@@ -1,0 +1,66 @@
+name: Build Android APK
+# Builds only on the main and master branches. To use another branch, change the two names below (and the "if" line).
+on:
+  workflow_dispatch:
+  push:
+    branches: [main, master]
+permissions:
+  contents: write
+concurrency:
+  group: build-apk-${{ github.ref_name }}
+  cancel-in-progress: true
+jobs:
+  apk:
+    if: github.ref_name == 'master' || github.ref_name == 'main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: 21
+      - run: npm install
+      - name: Apply edition.config.json (name, location, theme, icon, app id)
+        run: node scripts/customize.cjs
+      - run: npm run build
+      - run: rm -rf android && npx cap add android
+      - run: node scripts/android-setup.cjs
+      - run: node scripts/make-android-icons.cjs
+      - run: npx cap sync android
+      - name: Version number
+        run: |
+          sed -i "s/versionCode 1/versionCode ${{ github.run_number }}/; s/versionName \"1.0\"/versionName \"1.${{ github.run_number }}\"/" android/app/build.gradle
+      - name: Use the fixed signing key (from the DEBUG_KEYSTORE_BASE64 secret)
+        env:
+          DEBUG_KEYSTORE_BASE64: ${{ secrets.DEBUG_KEYSTORE_BASE64 }}
+        run: |
+          if [ -z "$DEBUG_KEYSTORE_BASE64" ]; then
+            echo "::error::Missing GitHub secret DEBUG_KEYSTORE_BASE64. Add it under Settings > Secrets and variables > Actions. See BUILD-APK.md."
+            exit 1
+          fi
+          mkdir -p ~/.android
+          echo "$DEBUG_KEYSTORE_BASE64" | base64 -d > ~/.android/debug.keystore
+      - run: chmod +x android/gradlew && cd android && ./gradlew assembleDebug --no-daemon
+      - name: Name the APK after the edition
+        run: |
+          APK="$(node -p "require('./src/edition.json').name.normalize('NFKD').replace(/[^A-Za-z0-9]+/g,'-').replace(/^-|-$/g,'') || 'Prayer-App'")"
+          echo "APK=$APK" >> "$GITHUB_ENV"
+          cp android/app/build/outputs/apk/debug/app-debug.apk "$APK-v${{ github.run_number }}.apk"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Prayer-APK
+          path: ${{ env.APK }}-v${{ github.run_number }}.apk
+          if-no-files-found: error
+      - uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}-${{ github.run_number }}
+          name: ${{ env.APK }} v${{ github.run_number }}
+          make_latest: true
+          body: |
+            Install: download the .apk below on your phone, open it and allow "Install unknown apps" if asked.
+            On first launch tap "Allow and continue" so prayer alerts and location work.
+          files: ${{ env.APK }}-v${{ github.run_number }}.apk
