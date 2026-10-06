@@ -1,0 +1,23 @@
+{
+  "name": "Daily Prayer",
+  "appName": "Daily Prayer",
+  "tagline": "",
+  "dedication": "",
+  "greeting": "Assalamu Alaikum",
+  "location": "Tirunelveli, Tamil Nadu",
+  "locationLabel": "Tirunelveli, Tamil Nadu",
+  "lat": 8.7139,
+  "lng": 77.7567,
+  "lockCoordinates": true,
+  "theme": "emerald",
+  "accent": "",
+  "method": 3,
+  "school": 0,
+  "hour24": false,
+  "hideSections": [],
+  "iconStyle": "quran",
+  "iconArabic": null,
+  "iconBackground": "#0B2E2A",
+  "iconColor": "#D9AE4E",
+  "appId": "com.dailyprayer.app"
+}
